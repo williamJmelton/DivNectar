@@ -6,6 +6,7 @@ import { FluidObject } from "gatsby-image"
 // TODO combine the post styles here and the post styles for the portfolio into
 import ContentCardStyles from "../styles/content-card.styles"
 import SEO from "src/components/seo"
+import { time } from "console"
 
 interface BlogNode {
   node: {
@@ -34,10 +35,10 @@ export const Posts = () => {
     <div>
       <SEO title={"DivNectar Blog"} description={"Development Blog"} />
       <ContentCardStyles.H1 centered>Blog</ContentCardStyles.H1>
-      <ContentCardStyles.PostContainer>
+      <ContentCardStyles.PostsContainer>
         {data.allMdx.edges.map(({ node }: BlogNode, index: number) => {
           return (
-            <ContentCardStyles.PostCard key={index}>
+            <ContentCardStyles.PostCard key={node.frontmatter.slug}>
               <ContentCardStyles.TagsContainer>
                 {node.frontmatter.tags.map((tag: string) => {
                   return (
@@ -56,7 +57,7 @@ export const Posts = () => {
                 <ContentCardStyles.PostLink
                   cover
                   duration={0.6}
-                  to={"blog/" + node.frontmatter.slug}
+                  to={node.frontmatter.slug}
                 >
                   <Img
                     style={{ maxWidth: "200px", margin: "0 auto" }}
@@ -68,7 +69,7 @@ export const Posts = () => {
             </ContentCardStyles.PostCard>
           )
         })}
-      </ContentCardStyles.PostContainer>
+      </ContentCardStyles.PostsContainer>
     </div>
   )
 }

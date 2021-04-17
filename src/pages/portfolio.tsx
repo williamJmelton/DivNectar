@@ -75,7 +75,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ theme }) => {
   return (
     <div>
       <ContentCardStyles.H1 centered>Portfolio</ContentCardStyles.H1>
-      <ContentCardStyles.PostContainer>
+      <ContentCardStyles.PostsContainer>
         {data.allMdx.edges.map(({ node }: PostNode, index: number) => {
           return (
             <ContentCardStyles.PostCard key={index}>
@@ -84,7 +84,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ theme }) => {
                   paintDrip
                   hex={theme.backgroundSecondary}
                   duration={0.6}
-                  to={"portfolio/" + node.frontmatter.slug}
+                  to={node.frontmatter.slug}
                 >
                   <Img
                     fluid={node.frontmatter.featuredImage.childImageSharp.fluid}
@@ -95,7 +95,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ theme }) => {
             </ContentCardStyles.PostCard>
           )
         })}
-      </ContentCardStyles.PostContainer>
+      </ContentCardStyles.PostsContainer>
     </div>
   )
 }
